@@ -31,7 +31,7 @@
             color: blue; 
         }
         p{
-            color:blue;
+            color:grey;
         }
         .search-wrapper {
         display: flex;
@@ -46,7 +46,7 @@
         }
         .search-container {
             position: relative;
-            max-width: 500px;  
+            max-width: 700px;  
             margin: 20px auto; 
         }
         #search-bar {
@@ -58,19 +58,15 @@
             background: transparent;   
         }
         #suggestion-box{
-        position: absolute;
-        top: 100%;                 
-        left: 0;
-        right: 0;                  
-        margin-top: 2px;         
-        background: white;
-        border: 2px solid black;   
-              
-        padding: 15px;
-        text-align:center;          
-        box-sizing: border-box;    
-                       
-    }
+            margin-top: 8px;
+            text-align: left;
+        }
+        .suggestion-item{
+            border: 1px solid gray;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+        }
     </style>
 
 
@@ -103,11 +99,52 @@
                 </div>
                 
                 <div id="suggestion-box">
-                    Suggestion Box
+                
                 </div>
             </div>
     </div>
+    <script>
+        var searchBox = document.getElementById("search-bar");
+        var suggestionBox = document.getElementById("suggestion-box");
+
+        searchBox.addEventListener("input", function(){
+            // 1 : Get user typed text
+            var userInput = searchBox.value;
+            if(userInput.trim() === ""){
+
+            }
+            else{
+                var url1 = "https://autosuggest-backend.onrender.com/api/autosuggest?q=";
+                var url3 = "&algorithm=brute&limit=10&weighted=false";
+                var url = url1 + userInput + url3;
+                // 2 : Make api call to get suggestion 
+                fetch(url).
+                    then(function(response){
+                        return response.json();
+                    })
+                    .then(function(data){
+                        console.log(data);
+
+                        // 3 : Display data in HTML
+                        var resultsArray = data.results;
+                        var htmlResults = "";
+                        for(var i=0; i< resultsArray.length; i++)
+                        {
+                            
+                            htmlResults += "<div class='suggestion-item'>" + resultsArray[i].text + "</div>";
+                        }
+                        // var suggestionBox = document.getElementById("suggestion-box");
+                        suggestionBox.innerHTML = htmlResults;
+                        
+                    })
+
+                
+            }
+
+
+        })
+    </script>
         
     
 </body>
-</html>
+
