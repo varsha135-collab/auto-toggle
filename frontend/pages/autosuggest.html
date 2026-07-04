@@ -4,9 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <h1>Auto suggest page</h1>
+    <style>
+        #top-header{
+            position:fixed;
+            top:20px;
+            left:20px;
+        }
+        #status-type{
+            position:fixed;
+            top:20px;
+            right:20px;
+        }
+        #home-page{
+            margin:200px;
+        }
+    </style>
+
+
+
 </head>
 <body>
+    <div id="top-header">
+
+            <span class="gear">&#x2699;</span>
+    </div>
+    <div id="status-type">
+        
+            <span class="status-text">&#8226;Online</span>
+            <span class="separator">|</span>
+            <span class="clock-icon">&#8226;&#x23F0;</span>
+            <span id="live-clock" class="clock-text"></span>
+            <span class="ms-label">ms</span>
+        
+
+    </div>
+    <div id="home-page"class="container">
+        <center>
+
+            <h1>BeingInfinity</h1>
+            <p>One million phrases.Four algorithms.Prefix Based auto Suggest.</p>
+            <div class="search-wrapper">
+               <span class="search-lens">&#128269;</span>
+               <input type="text" id="search-bar" placeholder="Start typing...">
+           </div>
+        </center>
+        
+    </div>
     
 </body>
 </html>
